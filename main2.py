@@ -7,22 +7,22 @@ win = pygame.display.set_mode((500, 500))
 pygame.display.set_caption('test window')
 
 #створюємо список з спрайтів в право
-walkRight = [pygame.image.load('img/right_1.png'), pygame.image.load('img/right_2.png'), pygame.image.load('img/right_3.png'), pygame.image.load('img/right_4.png'), pygame.image.load('img/right_5.png'), pygame.image.load('img/right_6.png')]
+walkRight = [pygame.image.load('img2/right_1.png'), pygame.image.load('img2/right_2.png'), pygame.image.load('img2/right_3.png'), pygame.image.load('img2/right_4.png'), pygame.image.load('img2/right_5.png'), pygame.image.load('img2/right_6.png')]
 
 #створюємо список з спрайтів в ліво
-walkLeft = [pygame.image.load('img/left_1.png'), pygame.image.load('img/left_2.png'), pygame.image.load('img/left_3.png'), pygame.image.load('img/left_4.png'), pygame.image.load('img/left_5.png'), pygame.image.load('img/left_6.png')]
+walkLeft = [pygame.image.load('img2/left_1.png'), pygame.image.load('img2/left_2.png'), pygame.image.load('img2/left_3.png'), pygame.image.load('img2/left_4.png'), pygame.image.load('img2/left_5.png'), pygame.image.load('img2/left_6.png')]
 
 #об'являємо задній фон
 bg = pygame.image.load('img/bg.jpg')
 
 
-playerStand = pygame.image.load('img/idle.png')
+playerStand = pygame.image.load('img2/def.png')
 
 clock = pygame.time.Clock()
 
-
+#Опції гравця
 width = 60
-height = 71
+height = 80
 speed = 5
 
 x = 5
@@ -125,6 +125,7 @@ while run:
         right = False
         left = False
         animcount = 0
+        lastMove = "right"
     if not(isJump):
         if keys[pygame.K_SPACE]:
             isJump = True
