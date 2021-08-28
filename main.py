@@ -1,3 +1,8 @@
+"""
+my github: https://github.com/ruslancho
+my email: r.melkovskiy@ukr.net
+"""
+
 import pygame
 
 #розмір ігрового поля
@@ -47,8 +52,8 @@ animCount = 0
 
 run = True #True - гра триває, False - гра закривається
 
-bullets = []
-lastMove = "right"
+bullets = [] #створюєм порожній список пуль
+lastMove = "right" #дефолтове значення напрямку стрільби гравця
 
 
 def playerJumpDown(jumpCountMax):
@@ -91,7 +96,7 @@ def drawWindow():
     for bullet in bullets:
         bullet.draw(win)
 
-    pygame.display.update()
+    pygame.display.update() #оновлення вікна гри
 
 
 while run:
@@ -109,28 +114,29 @@ while run:
         else:
             bullets.pop(bullets.index(bullet))
 
-    keys = pygame.key.get_pressed()
+    keys = pygame.key.get_pressed() #отримання списка нажатих кнопок
 
-    if keys[pygame.K_f]:
+    if keys[pygame.K_f]: #якщо нажата кнопка "f"
 
         if lastMove == 'right':
             facing = 1
         else:
             facing = -1
 
-        if len(bullets) < 5:
-            bullets.append(snaryad(round(x + width // 2), round(y + height // 2), 5, (255, 0, 0), facing))
+        if len(bullets) < 5: #якщо кількість куль менше 5
+            bullets.append(snaryad(round(x + width // 2), round(y + height // 2), 5, (255, 0, 0), facing)) #додаємо ще одну кулю
 
-    if keys[pygame.K_LEFT] and x > 5:
-        x -= speed
-        left = True
-        right = False
-        lastMove = "left"
-    elif keys[pygame.K_RIGHT] and x < gameArea[0] - width - 5:
-        x += speed
-        left = False
-        right = True
-        lastMove = "right"
+    #переміщення гравця
+    if keys[pygame.K_LEFT] and x > 5: #якщо натиснута клавиша "стрілка в ліво" і позиція гравця більше 5
+        x -= speed #переміщаємо гравця по координаті x вліво на значення змінної 'speed'
+        left = True #гравець повернутий вліво
+        right = False #не в право
+        lastMove = "left" #останній раз повернутий вліво
+    elif keys[pygame.K_RIGHT] and x < gameArea[0] - width - 5: # #якщо натиснута клавиша "стрілка в право" і позиція гравця менше gameArea[0] - width - 5
+        x += speed #переміщаємо гравця по координаті x вправо на значення змінної 'speed'
+        left = False #гравець повернутий вправо
+        right = True #не вліво
+        lastMove = "right" #останній раз повернутий вправо
     else:
         right = False
         left = False
