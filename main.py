@@ -54,7 +54,8 @@ animCount = 0
 
 run = True #True - гра триває, False - гра закривається
 
-bullets = [] #створюєм порожній список пуль
+bullets = [] #створюєм порожній список куль
+boxes = [] #створюємо порожній список ящиків
 lastMove = "right" #дефолтове значення напрямку стрільби гравця
 
 #
@@ -80,10 +81,19 @@ class snaryad():
     def draw(self, win):
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
 
+#описуємо створення ящика
 class box():
-    def __init_(self, )
+    def __init__(self, gameArea, spritesBox):
+        self.gameArea = gameArea
+        self.spritesBox = spritesBox
 
-#описуємо створння вікна
+    def draw(self, win):
+        win.blit(pygame.image.load(spritesBox['boxNormal']), (100, 100))
+        win.blit(pygame.image.load(spritesBox['boxNormal']), (100, 200))
+
+
+
+#малюємо ігрове поле
 def drawWindow():
     global animCount
 
@@ -103,6 +113,9 @@ def drawWindow():
 
     for bullet in bullets:
         bullet.draw(win)
+
+    for box in boxes:
+        box.draw(win)
 
     pygame.display.update() #оновлення вікна гри
 
@@ -125,6 +138,8 @@ while run:
     keys = pygame.key.get_pressed() #отримання списка нажатих кнопок
 
     if keys[pygame.K_f]: #якщо нажата кнопка "f"
+
+        boxes.append(box(gameArea, spritesBox))
 
         if lastMove == 'right':
             facing = 1
