@@ -29,6 +29,8 @@ bg = pygame.image.load('img/background.jpg')
 #спрайт гравця при створенні гри
 playerStand = pygame.image.load('img/def.png')
 
+#спрайт ящика
+spritesBox = {'boxNormal' : 'img/box/boxNormal.png', 'boxDestroyded' : ['img/box/boxDestroyded_1.png', 'img/box/boxDestroyded_2.png', 'img/box/boxDestroyded_3.png', 'img/box/boxDestroyded_4.png', 'img/box/boxDestroyded_5.png', 'img/box/boxDestroyded_6.png', 'img/box/boxDestroyded_7.png', 'img/box/boxDestroyded_8.png']}
 
 clock = pygame.time.Clock()
 
@@ -77,6 +79,9 @@ class snaryad():
     #створення об'єкту снаряд
     def draw(self, win):
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
+
+class box():
+    def __init_(self, )
 
 #описуємо створння вікна
 def drawWindow():
