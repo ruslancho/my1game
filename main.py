@@ -55,7 +55,7 @@ run = True #True - гра триває, False - гра закривається
 bullets = [] #створюєм порожній список пуль
 lastMove = "right" #дефолтове значення напрямку стрільби гравця
 
-
+#
 def playerJumpDown(jumpCountMax):
     global y
     y += (jumpCountMax ** 2) / 2
@@ -64,7 +64,9 @@ def playerJumpUp(jumpCountMax):
     global y
     y -= (jumpCountMax ** 2) / 2
 
+#описуєм створення снаряду
 class snaryad():
+    #характеристики снаряду
     def __init__(self, x, y, radius, color, facing):
         self.x = x
         self.y = y
@@ -72,10 +74,11 @@ class snaryad():
         self.color = color
         self.facing = facing
         self.vel = 8 * facing
-
+    #створення об'єкту снаряд
     def draw(self, win):
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
 
+#описуємо створння вікна
 def drawWindow():
     global animCount
 
@@ -98,7 +101,7 @@ def drawWindow():
 
     pygame.display.update() #оновлення вікна гри
 
-
+#головний процес гри
 while run:
     clock.tick(30)
 
