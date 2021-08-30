@@ -89,7 +89,7 @@ class box():
 
     def draw(self, win):
         win.blit(pygame.image.load(spritesBox['boxNormal']), (100, 100))
-        win.blit(pygame.image.load(spritesBox['boxNormal']), (100, 200))
+        win.blit(pygame.image.load(spritesBox['boxNormal']), (200, 100))
 
 
 
@@ -119,6 +119,8 @@ def drawWindow():
 
     pygame.display.update() #оновлення вікна гри
 
+boxes.append(box(gameArea, spritesBox)) #створюємо список ящиків
+
 #головний процес гри
 while run:
     clock.tick(30)
@@ -138,9 +140,6 @@ while run:
     keys = pygame.key.get_pressed() #отримання списка нажатих кнопок
 
     if keys[pygame.K_f]: #якщо нажата кнопка "f"
-
-        boxes.append(box(gameArea, spritesBox))
-
         if lastMove == 'right':
             facing = 1
         else:
