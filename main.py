@@ -59,11 +59,11 @@ boxes = [] #створюємо порожній список ящиків
 lastMove = "right" #дефолтове значення напрямку стрільби гравця
 
 #
-def playerJumpDown(jumpCountMax):
+def playerJumpUp(jumpCountMax):
     global y
     y += (jumpCountMax ** 2) / 2
 
-def playerJumpUp(jumpCountMax):
+def playerJumpDown(jumpCountMax):
     global y
     y -= (jumpCountMax ** 2) / 2
 
@@ -88,8 +88,8 @@ class box():
         self.spritesBox = spritesBox
 
     def draw(self, win):
-        win.blit(pygame.image.load(spritesBox['boxNormal']), (100, 100))
-        win.blit(pygame.image.load(spritesBox['boxNormal']), (200, 100))
+        win.blit(pygame.image.load(spritesBox['boxNormal']), (100, 200))
+        win.blit(pygame.image.load(spritesBox['boxNormal']), (200, 200))
 
 
 
@@ -170,10 +170,13 @@ while run:
             isJump = True
     else:
         if jumpCountMax >= jumpCountMin:
-            if jumpCountMax < 0: #гравець литить догори
-                playerJumpDown(jumpCountMax) #передвинути граця вище
-            elif jumpCountMax > jumpCountMin: #гравець литить донизу
-                playerJumpUp(jumpCountMax) #передвинути граця нище
+            print(x)
+            if x >= 90 and x <= 110:
+                jumpCountMax = jumpCountMax * -1
+            if jumpCountMax < 0: #гравець литить донизу
+                playerJumpUp(jumpCountMax) #передвинути граця вниз
+            elif jumpCountMax > jumpCountMin: #гравець литить доверху
+                playerJumpDown(jumpCountMax) #передвинути граця нище
             jumpCountMax -= 1
         else: #гравець вже не в стрибку
             isJump = False #не стрибає
