@@ -45,8 +45,8 @@ y = gameArea[1] - height - 25
 
 #значення при ініціалізаці ігрового поля
 isJump = False #за замовчуванням гравець не пригає
-jumpCountMax = 10 #максимальна висота прижка гравця
-jumpCountMin = -10 #мінімальна висота прижка гравця
+jumpCountMax = 8 #максимальна висота прижка гравця
+jumpCountMin = -8 #мінімальна висота прижка гравця
 Jump = 1
 right = False #поворот гравця
 left = False #поворот гравця
@@ -164,27 +164,20 @@ while run:
         left = False
         animcount = 0
         lastMove = "right"
-    if not(isJump):
+    #обробка стрибка
+    if not(isJump): #гравець не в стрибку
         if keys[pygame.K_SPACE]:
             isJump = True
     else:
         if jumpCountMax >= jumpCountMin:
-            if jumpCountMax < 0:
-                playerJumpDown(jumpCountMax)
-            elif jumpCountMax > jumpCountMin:
-                playerJumpUp(jumpCountMax)
+            if jumpCountMax < 0: #гравець литить догори
+                playerJumpDown(jumpCountMax) #передвинути граця вище
+            elif jumpCountMax > jumpCountMin: #гравець литить донизу
+                playerJumpUp(jumpCountMax) #передвинути граця нище
             jumpCountMax -= 1
-        elif jumpCountMax == -11:
-            jumpCountMax = 6
-            jumpCountMin = -6
-            jump = 2
-        elif jump == 2:
-            jumpCountMax = 3
-            jumpCountMin = -3
-            jump = 1
-        else:
-            isJump = False
-            jumpCountMax = 10
-            jumpCountMin = -10
-    drawWindow()
-pygame.quit()
+        else: #гравець вже не в стрибку
+            isJump = False #не стрибає
+            jumpCountMax = 8 #стандартне значення висоти стрибка верхнє
+            jumpCountMin = -8 #стандартне значення висоти стрибка нижнє
+    drawWindow() #малюємо вікно
+pygame.quit() #завершуємо ігровий процес
