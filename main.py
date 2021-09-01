@@ -47,7 +47,6 @@ y = gameArea[1] - height - 25
 isJump = False #за замовчуванням гравець не пригає
 jumpCountMax = 8 #максимальна висота прижка гравця
 jumpCountMin = -8 #мінімальна висота прижка гравця
-Jump = 1
 right = False #поворот гравця
 left = False #поворот гравця
 animCount = 0
@@ -171,7 +170,10 @@ while run:
     else:
         if jumpCountMax >= jumpCountMin:
             print(x)
-            if x >= 90 and x <= 110:
+            print(y)
+            print((x >= 90 and x <= 110) and (y >= 190 and y <= 210))
+            print("____")
+            if (x >= 90 and x <= 110) and (y >= 190 or y <= 210):
                 jumpCountMax = jumpCountMax * -1
             if jumpCountMax < 0: #гравець литить донизу
                 playerJumpUp(jumpCountMax) #передвинути граця вниз
